@@ -1,0 +1,114 @@
+*, ::before, ::after {box-sizing:border-box; padding:0; margin:0;}
+body {font-family:Verdana,Calibri,Arial,'sans-serif'; font-size:12px; color:#333;}
+
+.ui {position:relative; display: flex; height: 500px;}
+.ui__blocks {position:relative; width: 800px;}
+.ui__tests  {overflow-y: auto; flex-grow: 1; padding: 15px 0 0 20px; border-left:1px solid #888;}
+#mocha {margin: 0 50px 0 0;}
+
+
+
+/* Общее */
+.block {
+	position:absolute;
+	border:0 solid red;
+	left:         var(--left);
+	top:          var(--top);
+	width:        var(--size);
+	height:       var(--size);
+	padding:      var(--padding);
+	border-width: var(--border);
+	margin:       var(--margin);
+}
+.block::before, .block::after {content:''; position:absolute; display:flex; justify-content:center; align-items:center;}
+
+.block_from {
+	--size:    100px;
+	--padding: 10px;
+	--border:  1px;
+	--margin:  15px;
+}
+.block_to {
+	--size:    150px;
+	--padding: 15px;
+	--border:  3px;
+	--margin:  20px;
+}
+
+
+
+/* border-box */
+.block_bb {
+	--csize: calc(var(--size) - var(--padding)*2 - var(--border)*2);
+	--mpos:  calc(0px - var(--margin) - var(--border));
+	--msize: calc(var(--size) + var(--margin)*2);
+}
+.block_bb::before { /* content */
+	content: 'border-box';
+	left:   var(--padding);
+	top:    var(--padding);
+	width:  var(--csize);
+	height: var(--csize);
+	background:white;
+	z-index:1;
+}
+.block_bb { /* padding */
+	background:#cde;
+}
+.block_bb::after { /* margin  */
+	left:   var(--mpos);
+	top:    var(--mpos);
+	width:  var(--msize);
+	height: var(--msize);
+	background:#f2e0b3;
+	z-index:-1;
+}
+
+.block_from-bb {
+	--left: 20px;
+	--top:  10px;
+}
+.block_to-bb {
+	--left: 500px;
+	--top:  200px;
+}
+
+
+
+/* content-box */
+.block_cb, .block_cb::before, .block_cb::after {box-sizing:content-box;}
+.block_cb {
+	--ppos:  var(--padding);
+	--psize: var(--size);
+	--mpos:  calc(0px - var(--margin) - var(--border));
+	--msize: calc(var(--size) + var(--padding)*2 + var(--border)*2 + var(--margin)*2);
+}
+.block_cb::before { /* content */
+	content: 'content-box';
+	left:   var(--ppos);
+	top:    var(--ppos);
+	width:  var(--psize);
+	height: var(--psize);
+	background:white;
+	z-index:1;
+}
+.block_cb { /* padding */
+	background:#cde;
+}
+.block_cb::after { /* margin  */
+	left:   var(--mpos);
+	top:    var(--mpos);
+	width:  var(--msize);
+	height: var(--msize);
+	background:#f2e0b3;
+	z-index:-2;
+}
+
+.block_from-cb {
+	--left: 20px;
+	--top:  200px;
+}
+.block_to-cb {
+	--left: 200px;
+	--top:  300px;
+}

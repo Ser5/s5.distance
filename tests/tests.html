@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Test</title>
+
+	<script src="libs/mocha.js"></script>
+	<script src="libs/chai.js"></script>
+	<link rel="stylesheet" href="libs/mocha.css">
+
+	<script src="../src/s5.distance.js"></script>
+	<link rel="stylesheet" href="tests.css">
+</head>
+<body>
+
+<div class="ui">
+	<div class="ui__blocks">
+		<div class="block block_bb block_from block_from-bb"></div>
+		<div class="block block_bb block_to   block_to-bb"></div>
+		<div class="block block_cb block_from block_from-cb"></div>
+		<div class="block block_cb block_to   block_to-cb"></div>
+	</div>
+	<div id="mocha" class="ui__tests"></div>
+</div>
+
+<script>
+mocha.setup('bdd');
+mocha.checkLeaks();
+</script>
+
+<script src="tests.js"></script>
+
+<script>mocha.run();</script>
+
+</body>
+</html>
